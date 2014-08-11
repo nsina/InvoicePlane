@@ -169,7 +169,7 @@
         }
 
         td {
-            vertical-align: middle;
+            vertical-align: middle !important;
         }
 
         th:first-child,
@@ -215,6 +215,11 @@
 
         .btn {
             margin-top: 15px;
+        }
+
+        .alert {
+            margin-left: 0;
+            margin-right: 0;
         }
 
     }
@@ -276,6 +281,11 @@
 
         .navbar-collapse {
             padding: 0;
+
+            &.in .navbar-form {
+                margin: 5px 0;
+                padding: 0;
+            }
         }
 
         .brand {
@@ -341,6 +351,22 @@
     #subnavigation {
         max-height: 50px !important;
         border-top: none;
+    }
+
+    .submenu {
+        .navbar-toggle {
+            margin: 0;
+            background: #bbb;
+            padding: 8px 6px;
+            .icon-bar {
+                background: #eee;
+            }
+        }
+        .navbar-collapse {
+            z-index: 9999;
+            margin-top: 7px;
+            padding: 0;
+        }
     }
 
 
@@ -484,6 +510,18 @@
       position: relative;
       overflow-x: hidden;
       overflow-y: scroll;
+   }
+
+   .details-box {
+       @extend .panel;
+       @extend .panel-default;
+       @extend .panel-body;
+
+       .has-feedback .form-control-feedback {
+           bottom: 0;
+           top: auto;
+           right: 0;
+       }
    }
 
 

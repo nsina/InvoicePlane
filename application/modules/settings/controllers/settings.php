@@ -34,10 +34,7 @@ class Settings extends Admin_Controller {
             // Only execute if the setting is different
             if ($settings['tax_rate_decimal_places'] <> $this->mdl_settings->setting('tax_rate_decimal_places'))
             {
-                $this->db->query("ALTER TABLE `ip_tax_rates` CHANGE `tax_rate_percent` `tax_rate_percent` DECIMAL( 5, ? ) NOT NULL",
-                array (
-                    $settings['tax_rate_decimal_places']
-                ));
+                $this->db->query("ALTER TABLE `ip_tax_rates` CHANGE `tax_rate_percent` `tax_rate_percent` DECIMAL( 5, {$settings['tax_rate_decimal_places']} ) NOT NULL");
             }
 
             // Save the submitted settings
@@ -141,7 +138,8 @@ class Settings extends Admin_Controller {
                 'languages'                => $languages,
                 'date_formats'             => date_formats(),
                 'current_date'             => new DateTime(),
-                'email_templates'          => $this->mdl_email_templates->get()->result(),
+                'email_templates_quote'    => $this->mdl_email_templates->where('email_template_type', 'quote')->get()->result(),
+                'email_templates_invoice'  => $this->mdl_email_templates->where('email_template_type', 'invoice')->get()->result(),
                 'merchant_drivers'         => $this->merchant->valid_drivers(),
                 'merchant_currency_codes'  => Merchant::$NUMERIC_CURRENCY_CODES,
                 'current_version'          => $current_version

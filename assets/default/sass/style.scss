@@ -14,6 +14,8 @@
     // Font: Font-Awesome
     @import "fonts/font-awesome/font-awesome";
 
+    // Bootstrap Datepicker
+    @import "bootstrap-datepicker";
 
 /* =============================================================================
    Base Styles
@@ -48,60 +50,6 @@
 /* =============================================================================
    Components
    ========================================================================== */
-
-    // Bootstrap Datepicker
-    // Fix input alignment
-    .controls.date {
-        margin-left: 10px;
-        padding: 0;
-    }
-
-    .datepicker .icon-arrow-left {
-        @extend .fa;
-        @extend .fa-arrow-left;
-        color: #777;
-    }
-
-    .datepicker .icon-arrow-right {
-        @extend .fa;
-        @extend .fa-arrow-right;
-        color: #777;
-    }
-
-    .datepicker .day.active {
-        background: #3276b1;
-        color: #efefef;
-        &:hover {
-            background: #3276b1;
-            color: #fff;
-        }
-    }
-
-    .datepicker .day:hover {
-        background: #efefef;
-        color: #3276b1;
-        cursor: crosshair;
-    }
-
-    // Fix datepicker icon alingment
-    .input-append.date .add-on i,
-    .input-prepend.date .add-on i {
-        width: auto;
-        height: auto;
-        display: inline;
-    }
-
-    // Display datepicker over modal box
-    .datepicker.dropdown-menu {
-        padding: 5px;
-        z-index: 9999;
-    }
-
-    // Reset padding on Date Picker
-    .datepicker table th:first-child,
-    .datepicker table td:first-child  {
-        padding-left:5px;
-    }
 
 
 /* =============================================================================
@@ -180,6 +128,10 @@
         tr.bold-border td {
             border-bottom-width: 2px;
         }
+    }
+
+    table.items td {
+    	vertical-align: top !important;
     }
 
 
@@ -364,7 +316,6 @@
         }
         .navbar-collapse {
             z-index: 9999;
-            margin-top: 7px;
             padding: 0;
         }
     }
@@ -429,8 +380,11 @@
         margin-right: 0;
     }
 
-    #form-settings .tab-content .alert {
-        margin: 15px;
+    #form-settings .tab-content,
+    div.table-content {
+	    .alert {
+			margin: 15px;
+	    }
     }
 
     #panel-overdue-invoices,
@@ -818,6 +772,13 @@
         font-weight: bold;
     }
 
+    .hidden-quote, .hidden-invoice {
+      display: none;
+    }
+
+    .show {
+      display: block;
+    }
 
 /* =============================================================================
    Responsive Media Queries
@@ -847,6 +808,10 @@
 
     .text-left-xs {
         text-align: left;
+    }
+
+    .submenu .navbar-collapse {
+    	margin-top: 7px;
     }
 
 }

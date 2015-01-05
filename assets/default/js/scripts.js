@@ -1,4 +1,5 @@
 /* Author: William G. Rivera*/
+"use strict";
 
 $(document).ready(function() {
 
@@ -22,16 +23,22 @@ $(document).ready(function() {
     });
 
     $('html').click(function () {
-        $('.dropdown-menu').removeAttr('style'); //Integrate this into the function. Try finding only the element is open and not all dropdown menus
+        $('.dropdown-menu:visible').not('.datepicker').removeAttr('style'); //Integrate this into the function.
     });
 
     // Handle click event for Email Template Tags insertion
     // Example Usage
     // <a href="#" class="text-tag" data-tag="{{{client_name}}}">Client Name</a>
+    var lastTaggableClicked;
     $('.text-tag').bind('click', function () {
         var templateTag = this.getAttribute("data-tag");
-        insertAtCaret('email_template_body', templateTag);
+        insertAtCaret(lastTaggableClicked.id, templateTag);
         return false;
+    });
+
+    // Keep track of the last "taggable" input/textarea
+    $('.taggable').on('focus', function(){
+        lastTaggableClicked = this;
     });
 
     // Load Resize Function
@@ -41,7 +48,15 @@ $(document).ready(function() {
 
 /*Fix Scrollbar on Main Content*/
 $(window).resize(function(){
-    var height = $(this).outerHeight() - $('nav.navbar').outerHeight();
+
+    // Set sidebar height
+    var D = document;
+    var doc_height = Math.max(Math.max(D.body.scrollHeight,    D.documentElement.scrollHeight), Math.max(D.body.offsetHeight, D.documentElement.offsetHeight), Math.max(D.body.clientHeight, D.documentElement.clientHeight));
+    $('.sidebar').height(doc_height);
+
+    // Set height for menus
+    var windowheight = $(this).outerHeight();
+    var height = windowheight - $('nav.navbar').outerHeight();
     height = height - $('.main-area .headerbar').outerHeight() - $('.nav-tabs').outerHeight();
 
     if ( $('#form-settings') ) {
@@ -53,8 +68,6 @@ $(window).resize(function(){
     } else {
         $('.main-area .container-fluid, .main-area .tab-content, .main-area .content, .main-area .table-content').height(height);
     }
-
-
 
 });
 
@@ -89,4 +102,16 @@ function insertAtCaret(areaId, text) {
         txtarea.focus();
     }
     txtarea.scrollTop = scrollPos;
+}
+
+// takes mdl_email_template row as JSON, array with names to use in form fields.
+function inject_email_template(template_fields, email_template) {
+    $.each(email_template, function (key, val) {
+        // remove prefix from key
+        key = key.replace("email_template_", "");
+        // if key is in template_fields, apply value to form field
+        if (val && template_fields.indexOf(key) > -1) {
+            $("#" + key).val(val);
+        }
+    });
 }

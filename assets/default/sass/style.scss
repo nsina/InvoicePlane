@@ -19,17 +19,14 @@
    Base Styles
    ========================================================================== */
 
-    html, body, .sidebar {
-        height: 100%;
-    }
-
-    // overflow-x fix white space at the right when browser window is resized
     html, body {
-        overflow-y: hidden;
+        height: 100%;
+        -webkit-font-smoothing: subpixel-antialiased;
     }
 
     body {
         background-color: #fff;
+        padding-top: 50px;
     }
 
     img {
@@ -42,6 +39,20 @@
 
     h1, h2, h3, h4, h5, h6 {
         margin: 0;
+    }
+
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #eaeaea;
+        border-left: 1px solid #ccc;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #aaa;
     }
 
 
@@ -270,8 +281,13 @@
             background: #444;
             color: #ccc;
 
-            .nav a {
-                color: #ccc;
+            .nav {
+                a{
+                    color: #ccc;
+                }
+                .open a {
+                    background: #555;
+                }
             }
 
             .dropdown-menu {
@@ -279,6 +295,12 @@
 
                 a {
                     color: #444;
+                }
+            }
+            .open .dropdown-menu a {
+                background: #fff;
+                &:hover {
+                    background: #f5f5f5;
                 }
             }
         }
@@ -290,6 +312,11 @@
                 margin: 5px 0;
                 padding: 0;
             }
+        }
+
+        .navbar-toggle {
+            margin-top: 5px;
+            margin-bottom: 5px;
         }
 
         .brand {
@@ -323,9 +350,6 @@
                 text-align: left;
             }
 
-            .divider-vertical {
-                margin: 0;
-            }
         } // /.settings
 
     } // /.navbar
@@ -361,9 +385,9 @@
         .navbar-toggle {
             margin: 0;
             background: #bbb;
-            padding: 8px 6px;
-            .icon-bar {
-                background: #eee;
+            padding: 4px 6px;
+            i {
+                color: #eee;
             }
         }
         .navbar-collapse {
@@ -392,8 +416,10 @@
    ========================================================================== */
 
     .sidebar {
+        @extend .col-sm-1;
+        height: 100%;
+        padding: 0;
         background: #eee;
-        float: left;
         border-right: 1px solid #ddd;
 
         ul {
@@ -408,6 +434,7 @@
             border-bottom: 1px solid #ddd;
             font-size: 24px;
             color: #555;
+            text-align: center;
 
             &:hover {
                 background: #e5e5e5;
@@ -437,6 +464,9 @@
 	    .alert {
 			margin: 15px;
 	    }
+        .tab-pane {
+            padding-bottom: 50px;
+        }
     }
 
     #panel-overdue-invoices,
@@ -466,11 +496,18 @@
     }
 
     .main-area {
-        margin-left: 64px;
+        @extend .col-xs-12;
+        @extend .col-sm-11;
+        padding: 0;
 
         .content,
         .tab-info {
             padding: 20px;
+        }
+
+        .content .alert {
+            margin-right: 0;
+            margin-left: 0;
         }
 
         .content-padding {
@@ -509,15 +546,6 @@
         overflow-y: auto;
     }
 
-   .main-area .container-fluid,
-   .main-area .content,
-   .main-area .table-content,
-   .main-area .tab-content {
-      position: relative;
-      overflow-x: hidden;
-      overflow-y: scroll;
-   }
-
    .details-box {
        @extend .panel;
        @extend .panel-default;
@@ -529,6 +557,10 @@
            right: 0;
        }
    }
+
+    #email_template_pdf_template > option {
+      display: none;
+    }
 
 
 /* =============================================================================
@@ -832,6 +864,10 @@
 // Styles for large devices (< lg)
 @media (min-width: 992px) {
 
+    .navbar-nav .visible-lg {
+            display: inline-block !important;
+    }
+
 }
 
 // Styles for medium devices (sm > md)
@@ -842,12 +878,11 @@
 // Styles for  small devices (xs > sm)
 @media (max-width: 768px) {
 
-    // Remove default padding set in bootstrap/_responsive-767px-max.scss
-    body { padding: 0; }
-
     .sidebar li a { padding: 7px; }
 
     .main-area { margin-left: 0; }
+
+    .navbar-nav { margin: 7px 0; }
 
     .container-fluid { padding: 0 20px; }
 
@@ -859,11 +894,35 @@
     	margin-top: 7px;
     }
 
+    .navbar-inverse .navbar-nav .open .dropdown-menu {
+        padding-top: 0;
+        > li > a {
+            color: #ccc;
+            background: #555;
+            &:hover {
+                color: #fff;
+                background: #555;
+            }
+        }
+    }
+
 }
 
 // Styles for very small devices (< xs)
 @media (max-width: 480px) {
 
+    .navbar {
+        -webkit-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
+        -moz-box-shadow:    0 3px 5px 0 rgba(0, 0, 0, 0.3);
+        box-shadow:         0 3px 5px 0 rgba(0, 0, 0, 0.3);
+    }
+    .navbar-nav {
+        margin: 7px 0;
+
+        .visible-xs {
+            display: inline-block !important;
+        }
+    }
     .headerbar { padding: 8px !important; }
     .pull-right { margin-left: 5px !important; }
 

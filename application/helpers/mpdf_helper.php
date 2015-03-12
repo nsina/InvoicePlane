@@ -10,7 +10,7 @@ if (!defined('BASEPATH'))
  *
  * @package		InvoicePlane
  * @author		Kovah (www.kovah.de)
- * @copyright	Copyright (c) 2012 - 2014 InvoicePlane.com
+ * @copyright	Copyright (c) 2012 - 2015 InvoicePlane.com
  * @license		https://invoiceplane.com/license.txt
  * @link		https://invoiceplane.com
  * 
@@ -18,7 +18,6 @@ if (!defined('BASEPATH'))
 
 function pdf_create($html, $filename, $stream = TRUE)
 {
-
     require_once(APPPATH . 'helpers/mpdf/mpdf.php');
 
     $mpdf = new mPDF();
@@ -33,16 +32,10 @@ function pdf_create($html, $filename, $stream = TRUE)
 
     $mpdf->WriteHTML($html);
 
-    if ($stream)
-    {
-        $mpdf->Output($filename . '.pdf', 'I');
-    }
-    else
-    {
+    if ($stream) {
+        return $mpdf->Output($filename . '.pdf', 'I');
+    } else {
         $mpdf->Output('./uploads/temp/' . $filename . '.pdf', 'F');
-        
         return './uploads/temp/' . $filename . '.pdf';
     }
 }
-
-?>

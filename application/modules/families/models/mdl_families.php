@@ -10,15 +10,15 @@ if (!defined('BASEPATH'))
  *
  * @package		InvoicePlane
  * @author		Kovah (www.kovah.de)
- * @copyright	Copyright (c) 2012 - 2014 InvoicePlane.com
+ * @copyright	Copyright (c) 2012 - 2015 InvoicePlane.com
  * @license		https://invoiceplane.com/license.txt
  * @link		https://invoiceplane.com
  * 
  */
 
-class Mdl_Families extends Response_Model {
-
-    public $table       = 'ip_families';
+class Mdl_Families extends Response_Model
+{
+    public $table = 'ip_families';
     public $primary_key = 'ip_families.family_id';
 
     public function default_select()
@@ -33,15 +33,13 @@ class Mdl_Families extends Response_Model {
 
     public function validation_rules()
     {
-		return array(
-			'family_name' => array(
-				'field' => 'family_name',
-				'label' => lang('family_name'),
-				'rules' => 'required'
-			)
-		);    
-	}
+        return array(
+            'family_name' => array(
+                'field' => 'family_name',
+                'label' => lang('family_name'),
+                'rules' => 'required'
+            )
+        );
+    }
 
 }
-
-?>

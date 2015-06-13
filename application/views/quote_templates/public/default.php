@@ -23,6 +23,7 @@
                 color: #333 !important;
                 padding: 0 0 25px;
                 height: auto;
+                font-size: 12px;
             }
             table {
                 width:100%;
@@ -59,6 +60,10 @@
                 box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
             }
             #menu-container {
+                margin: 25px auto;
+                width: 900px;
+            }
+            footer {
                 margin: 25px auto;
                 width: 900px;
             }
@@ -105,7 +110,7 @@
                     <tr>
                         <td id="company-name">
                             <?php echo invoice_logo(); ?>
-                            <h2><?php echo $quote->user_name; ?></h2>
+                            <h2><?php echo $quote->user_company; ?></h2>
                             <p><?php if ($quote->user_vat_id) { echo lang("vat_id_short") . ": " . $quote->user_vat_id . '<br>'; } ?>
                                 <?php if ($quote->user_tax_code) { echo lang("tax_code_short") . ": " . $quote->user_tax_code . '<br>'; } ?>
                                 <?php if ($quote->user_address_1) { echo $quote->user_address_1 . '<br>'; } ?>
@@ -210,5 +215,8 @@
 
         </div>
 
+        <footer>
+            &copy; 2015 <a href="<?php echo $quote->user_web; ?>"><?php echo $quote->user_company; ?></a>. All rights reserved.
+        </footer>
     </body>
 </html>

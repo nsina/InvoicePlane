@@ -23,6 +23,7 @@
                 color: #333 !important;
                 padding: 0 0 25px;
                 height: auto;
+                font-size: 12px;
             }
             table {
                 width:100%;
@@ -65,6 +66,10 @@
                 margin: 25px auto;
                 width: 900px;
             }
+            footer {
+                margin: 25px auto;
+                width: 900px;
+            }
             .flash-message {
                 font-size: 120%;
                 font-weight: bold;
@@ -94,7 +99,7 @@
                     <tr>
                         <td id="company-name">
                             <?php echo invoice_logo(); ?>
-                            <h2><?php echo $invoice->user_name; ?></h2>
+                            <h2><?php echo $invoice->user_company; ?></h2>
                             <p><?php if ($invoice->user_vat_id) { echo lang("vat_id_short") . ": " . $invoice->user_vat_id . '<br>'; } ?>
                                 <?php if ($invoice->user_tax_code) { echo lang("tax_code_short") . ": " . $invoice->user_tax_code . '<br>'; } ?>
                                 <?php if ($invoice->user_address_1) { echo $invoice->user_address_1 . '<br>'; } ?>
@@ -214,5 +219,8 @@
 
         </div>
 
+        <footer>
+            &copy; 2015 <a href="<?php echo $invoice->user_web; ?>"><?php echo $invoice->user_company; ?></a>. All rights reserved.
+        </footer>
     </body>
 </html>

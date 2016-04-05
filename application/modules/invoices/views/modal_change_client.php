@@ -10,7 +10,10 @@
         });
 
         $().ready(function () {
-            $("[name='client_name']").select2({allowClear: true});
+            $("[name='client_name']").select2({
+                placeholder: "<?php echo lang('client'); ?>",
+                allowClear: true
+            });
             $("#client_name").focus();
         });
 
@@ -24,7 +27,7 @@
 
                 },
                 function (data) {
-                    console.log(data);
+                    <?php echo (IP_DEBUG ? 'console.log(data);' : ''); ?>
                     var response = JSON.parse(data);
                     if (response.success == '1') {
                         // The validation was successful and invoice was created
@@ -54,12 +57,12 @@
         <div class="modal-body">
 
             <div class="form-group">
-                <select name="client_name" id="client_name" class="input-sm form-control" autofocus>
+                <select name="client_name" id="client_name" class="input-sm form-control" autofocus="autofocus">
                     <option></option>
                     <?php foreach ($clients as $client) { ?>
                         <option value="<?php echo $client->client_name; ?>"
                                 <?php if ($client_name == $client->client_name) { ?>selected="selected"<?php } ?>
-                            > <?php echo $client->client_name; ?>     </option>
+                            ><?php echo $client->client_name; ?></option>
 
                     <?php } ?>
                 </select>

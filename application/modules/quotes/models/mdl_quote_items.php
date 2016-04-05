@@ -72,7 +72,7 @@ class Mdl_Quote_Items extends Response_Model
         );
     }
 
-    public function save($quote_id, $id = NULL, $db_array = NULL)
+    public function save($id = NULL, $db_array = NULL)
     {
         $id = parent::save($id, $db_array);
 
@@ -80,7 +80,12 @@ class Mdl_Quote_Items extends Response_Model
         $this->mdl_quote_item_amounts->calculate($id);
 
         $this->load->model('quotes/mdl_quote_amounts');
-        $this->mdl_quote_amounts->calculate($quote_id);
+
+        if (is_object($db_array) && isset($db_array->quote_id)){
+            $this->mdl_quote_amounts->calculate($db_array->quote_id);
+        } elseif (is_array($db_array) && isset($db_array['quote_id'])){
+            $this->mdl_quote_amounts->calculate($db_array['quote_id']);
+        }
 
         return $id;
     }

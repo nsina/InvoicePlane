@@ -10,7 +10,10 @@
         });
 
         $().ready(function () {
-            $("[name='client_name']").select2({allowClear: true});
+            $("[name='client_name']").select2({
+                placeholder: "<?php echo lang('client'); ?>",
+                allowClear: true
+            });
             $("#client_name").focus();
         });
 
@@ -23,7 +26,7 @@
                     quote_id: $('#quote_id').val()
                 },
                 function (data) {
-                    console.log(data);
+                    <?php echo (IP_DEBUG ? 'console.log(data);' : ''); ?>
                     var response = JSON.parse(data);
                     if (response.success == '1') {
                         // The validation was successful and invoice was created

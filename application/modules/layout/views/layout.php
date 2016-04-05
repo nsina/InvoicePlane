@@ -33,14 +33,16 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/default/css/monospace.css">
     <?php } ?>
 
-    <script src="<?php echo base_url(); ?>assets/default/js/libs/modernizr-2.8.3.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/default/js/libs/jquery-1.11.2.min.js"></script>
-
-    <script src="<?php echo base_url(); ?>assets/default/js/libs/bootstrap-3.3.2.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/default/js/libs/jquery-ui-1.11.2.custom.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/default/js/libs/bootstrap-typeahead.js"></script>
-    <script src="<?php echo base_url(); ?>assets/default/js/libs/select2.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/default/js/libs/dropzone.js"></script>
+    <!--[if lt IE 9]>
+    <script src="<?php echo base_url(); ?>assets/default/js/libs/html5shiv-3.7.2.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/default/js/libs/respond-1.4.2.min.js"></script>
+    <![endif]-->
+    
+    <script src="<?php echo base_url(); ?>assets/default/js/libs/jquery-1.12.0.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/default/js/libs/bootstrap-3.3.6.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/default/js/libs/jquery-ui-1.11.4.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/default/js/libs/select2-4.0.1.full.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/default/js/libs/dropzone-4.2.0.min.js"></script>
 
     <script type="text/javascript">
         Dropzone.autoDiscover = false;
@@ -54,7 +56,8 @@
                     autoclose: true,
                     format: '<?php echo date_format_datepicker(); ?>',
                     language: '<?php echo lang('cldr'); ?>',
-                    weekStart: '<?php echo $this->mdl_settings->setting('first_day_of_week'); ?>'
+                    weekStart: '<?php echo $this->mdl_settings->setting('first_day_of_week'); ?>',
+                    todayBtn: true
                 });
             });
 
@@ -349,26 +352,11 @@
 
 <script defer src="<?php echo base_url(); ?>assets/default/js/plugins.js"></script>
 <script defer src="<?php echo base_url(); ?>assets/default/js/scripts.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/default/js/libs/bootstrap-datepicker.js"></script>
+<script src="<?php echo base_url(); ?>assets/default/js/libs/bootstrap-datepicker.min.js"></script>
 <?php if (lang('cldr') != 'en') { ?>
     <script
         src="<?php echo base_url(); ?>assets/default/js/locales/bootstrap-datepicker.<?php echo lang('cldr'); ?>.js"></script>
 <?php } ?>
-
-<!--[if lt IE 7 ]>
-<script src="<?php echo base_url(); ?>assets/default/js/dd_belatedpng.js"></script>
-<script
-    type="text/javascript"> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
-<![endif]-->
-
-<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
-     chromium.org/developers/how-tos/chrome-frame-getting-started -->
-<!--[if lt IE 7 ]>
-<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-<script type="text/javascript">window.attachEvent('onload', function () {
-    CFInstall.check({mode: 'overlay'})
-})</script>
-<![endif]-->
 
 </body>
 </html>

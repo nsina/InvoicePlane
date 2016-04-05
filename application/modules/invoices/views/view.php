@@ -56,6 +56,7 @@
                     payment_method: $('#payment_method').val()
                 },
                 function (data) {
+                    <?php echo (IP_DEBUG ? 'console.log(data);' : ''); ?>
                     var response = JSON.parse(data);
                     if (response.success == '1') {
                         window.location = "<?php echo site_url('invoices/view'); ?>/" + <?php echo $invoice_id; ?>;
@@ -365,7 +366,7 @@ if ($this->config->item('disable_read_only') == TRUE) {
                                         <?php if ($invoice->is_read_only == 1 && $invoice->invoice_status_id == 4) {
                                             echo 'disabled="disabled"';
                                         } ?>>
-                                        <option value=""><?php echo lang('select_payment_method'); ?></option>
+                                        <option value="0"><?php echo lang('select_payment_method'); ?></option>
                                         <?php foreach ($payment_methods as $payment_method) { ?>
                                             <option <?php if ($invoice->payment_method == $payment_method->payment_method_id) echo "selected" ?>
                                                 value="<?php echo $payment_method->payment_method_id; ?>">

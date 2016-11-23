@@ -23,7 +23,7 @@ class Mdl_Custom_Fields extends MY_Model
 
     public function default_select()
     {
-        $this->db->select('SQL_CALC_FOUND_ROWS *', FALSE);
+        $this->db->select('SQL_CALC_FOUND_ROWS *', false);
     }
 
     public function custom_tables()
@@ -42,12 +42,12 @@ class Mdl_Custom_Fields extends MY_Model
         return array(
             'custom_field_table' => array(
                 'field' => 'custom_field_table',
-                'label' => lang('table'),
+                'label' => trans('table'),
                 'rules' => 'required'
             ),
             'custom_field_label' => array(
                 'field' => 'custom_field_label',
-                'label' => lang('label'),
+                'label' => trans('label'),
                 'rules' => 'required|max_length[50]'
             )
         );
@@ -81,7 +81,7 @@ class Mdl_Custom_Fields extends MY_Model
         return $db_array;
     }
 
-    public function save($id = NULL, $db_array = NULL)
+    public function save($id = null, $db_array = null)
     {
         if ($id) {
             // Get the original record before saving

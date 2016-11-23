@@ -23,7 +23,7 @@ class Mdl_Families extends Response_Model
 
     public function default_select()
     {
-        $this->db->select('SQL_CALC_FOUND_ROWS *', FALSE);
+        $this->db->select('SQL_CALC_FOUND_ROWS *', false);
     }
 
     public function default_order_by()
@@ -36,7 +36,7 @@ class Mdl_Families extends Response_Model
         return array(
             'family_name' => array(
                 'field' => 'family_name',
-                'label' => lang('family_name'),
+                'label' => trans('family_name'),
                 'rules' => 'required'
             )
         );

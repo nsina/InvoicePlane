@@ -51,7 +51,7 @@ class Upload extends Admin_Controller
                 move_uploaded_file($tempFile, $targetFile);
             } else //If file exists then echo the error and set a http error response
             {
-                echo lang('error_dublicate_file');;
+                echo trans('error_dublicate_file');;
                 http_response_code(404);
             }
 
@@ -79,7 +79,7 @@ class Upload extends Admin_Controller
             return false;
     }
 
-    public function show_files($url_key, $customerId = NULL)
+    public function show_files($url_key, $customerId = null)
     {
 
         $result = array();

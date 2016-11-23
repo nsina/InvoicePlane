@@ -19,15 +19,15 @@ if (!defined('BASEPATH'))
 class Response_Model extends Form_Validation_Model
 {
 
-    public function save($id = NULL, $db_array = NULL)
+    public function save($id = null, $db_array = null)
     {
 
         if ($id) {
-            $this->session->set_flashdata('alert_success', lang('record_successfully_updated'));
+            $this->session->set_flashdata('alert_success', trans('record_successfully_updated'));
             parent::save($id, $db_array);
         } else {
-            $this->session->set_flashdata('alert_success', lang('record_successfully_created'));
-            $id = parent::save(NULL, $db_array);
+            $this->session->set_flashdata('alert_success', trans('record_successfully_created'));
+            $id = parent::save(null, $db_array);
         }
 
         return $id;
@@ -37,7 +37,7 @@ class Response_Model extends Form_Validation_Model
     {
         parent::delete($id);
 
-        $this->session->set_flashdata('alert_success', lang('record_successfully_deleted'));
+        $this->session->set_flashdata('alert_success', trans('record_successfully_deleted'));
     }
 
 }

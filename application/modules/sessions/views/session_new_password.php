@@ -34,7 +34,7 @@
 <body>
 
 <noscript>
-    <div class="alert alert-danger no-margin"><?php echo lang('please_enable_js'); ?></div>
+    <div class="alert alert-danger no-margin"><?php echo trans('please_enable_js'); ?></div>
 </noscript>
 
 <br>
@@ -46,32 +46,32 @@
 
         <div class="row"><?php $this->layout->load_view('layout/alerts'); ?></div>
 
-        <h3><?php echo lang('set_new_password'); ?></h3>
-        
+        <h3><?php echo trans('set_new_password'); ?></h3>
+
         <br/>
 
         <form class="form-horizontal" method="post"
               action="<?php echo site_url('sessions/passwordreset'); ?>">
 
-            <input name="user_id" value="<?php echo $user_id; ?>" class="hidden" >
+            <input name="user_id" value="<?php echo $user_id; ?>" class="hidden">
 
             <div class="form-group">
                 <div class="col-xs-12 col-sm-3">
-                    <label for="new_password" class="control-label"><?php echo lang('new_password'); ?></label>
+                    <label for="new_password" class="control-label"><?php echo trans('new_password'); ?></label>
                 </div>
                 <div class="col-xs-12 col-sm-9">
                     <input type="password" name="new_password" id="new_password" class="form-control"
-                           placeholder="<?php echo lang('new_password'); ?>">
+                           placeholder="<?php echo trans('new_password'); ?>">
                 </div>
             </div>
 
             <input type="submit" name="btn_new_password" class="btn btn-block btn-success"
-                   value="<?php echo lang('set_new_password'); ?>">
+                   value="<?php echo trans('set_new_password'); ?>">
 
         </form>
 
     </div>
-    
+
 </div>
 
 <script type="text/javascript">

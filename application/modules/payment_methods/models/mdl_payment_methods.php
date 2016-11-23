@@ -23,7 +23,7 @@ class Mdl_Payment_Methods extends Response_Model
 
     public function default_select()
     {
-        $this->db->select('SQL_CALC_FOUND_ROWS *', FALSE);
+        $this->db->select('SQL_CALC_FOUND_ROWS *', false);
     }
 
     public function order_by()
@@ -36,7 +36,7 @@ class Mdl_Payment_Methods extends Response_Model
         return array(
             'payment_method_name' => array(
                 'field' => 'payment_method_name',
-                'label' => lang('payment_method'),
+                'label' => trans('payment_method'),
                 'rules' => 'required'
             )
         );

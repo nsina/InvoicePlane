@@ -43,36 +43,38 @@ class Mdl_Quote_Items extends Response_Model
         return array(
             'quote_id' => array(
                 'field' => 'quote_id',
-                'label' => lang('quote'),
+                'label' => trans('quote'),
                 'rules' => 'required'
             ),
             'item_name' => array(
                 'field' => 'item_name',
-                'label' => lang('item_name'),
+                'label' => trans('item_name'),
                 'rules' => 'required'
             ),
             'item_description' => array(
                 'field' => 'item_description',
-                'label' => lang('description')
+                'label' => trans('description')
             ),
             'item_quantity' => array(
                 'field' => 'item_quantity',
-                'label' => lang('quantity'),
-                'rules' => 'required'
+                'label' => trans('quantity'),
             ),
             'item_price' => array(
                 'field' => 'item_price',
-                'label' => lang('price'),
-                'rules' => 'required'
+                'label' => trans('price'),
             ),
             'item_tax_rate_id' => array(
                 'field' => 'item_tax_rate_id',
-                'label' => lang('item_tax_rate')
-            )
+                'label' => trans('item_tax_rate')
+            ),
+            'item_product_id' => array(
+                'field' => 'item_product_id',
+                'label' => trans('original_product')
+            ),
         );
     }
 
-    public function save($id = NULL, $db_array = NULL)
+    public function save($id = null, $db_array = null)
     {
         $id = parent::save($id, $db_array);
 
@@ -81,9 +83,9 @@ class Mdl_Quote_Items extends Response_Model
 
         $this->load->model('quotes/mdl_quote_amounts');
 
-        if (is_object($db_array) && isset($db_array->quote_id)){
+        if (is_object($db_array) && isset($db_array->quote_id)) {
             $this->mdl_quote_amounts->calculate($db_array->quote_id);
-        } elseif (is_array($db_array) && isset($db_array['quote_id'])){
+        } elseif (is_array($db_array) && isset($db_array['quote_id'])) {
             $this->mdl_quote_amounts->calculate($db_array['quote_id']);
         }
 

@@ -23,7 +23,7 @@ class Mdl_Tax_Rates extends Response_Model
 
     public function default_select()
     {
-        $this->db->select('SQL_CALC_FOUND_ROWS *', FALSE);
+        $this->db->select('SQL_CALC_FOUND_ROWS *', false);
     }
 
     public function default_order_by()
@@ -36,12 +36,12 @@ class Mdl_Tax_Rates extends Response_Model
         return array(
             'tax_rate_name' => array(
                 'field' => 'tax_rate_name',
-                'label' => lang('tax_rate_name'),
+                'label' => trans('tax_rate_name'),
                 'rules' => 'required'
             ),
             'tax_rate_percent' => array(
                 'field' => 'tax_rate_percent',
-                'label' => lang('tax_rate_percent'),
+                'label' => trans('tax_rate_percent'),
                 'rules' => 'required'
             )
         );

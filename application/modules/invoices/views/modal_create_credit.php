@@ -12,7 +12,7 @@
                     user_id: $('#user_id').val()
                 },
                 function (data) {
-                    <?php echo (IP_DEBUG ? 'console.log(data);' : ''); ?>
+                    <?php echo(IP_DEBUG ? 'console.log(data);' : ''); ?>
                     var response = JSON.parse(data);
                     if (response.success == '1') {
                         window.location = "<?php echo site_url('invoices/view'); ?>/" + response.invoice_id;
@@ -35,7 +35,7 @@
         <div class="modal-header">
             <a data-dismiss="modal" class="close"><i class="fa fa-close"></i></a>
 
-            <h3><?php echo lang('create_credit_invoice'); ?></h3>
+            <h3><?php echo trans('create_credit_invoice'); ?></h3>
         </div>
         <div class="modal-body">
 
@@ -49,11 +49,11 @@
                    value="<?php echo $invoice->client_name; ?>">
 
             <input type="hidden" name="invoice_date_created" id="invoice_date_created"
-                   value="<?php $credit_date = date_from_mysql(date('Y-m-d', time()), TRUE);
+                   value="<?php $credit_date = date_from_mysql(date('Y-m-d', time()), true);
                    echo $credit_date; ?>">
 
             <div class="form-group">
-                <label for="invoice_password"><?php echo lang('invoice_password'); ?></label>
+                <label for="invoice_password"><?php echo trans('invoice_password'); ?></label>
                 <input type="text" name="invoice_password" id="invoice_password" class="form-control"
                        value="<?php if ($this->mdl_settings->setting('invoice_pre_password') == '') {
                            echo '';
@@ -75,16 +75,16 @@
                 <?php } ?>
             </select>
 
-            <p><strong><?php echo lang('credit_invoice_details'); ?></strong></p>
+            <p><strong><?php echo trans('credit_invoice_details'); ?></strong></p>
 
             <ul>
-                <li><?php echo lang('client') . ': ' . $invoice->client_name ?></li>
-                <li><?php echo lang('credit_invoice_date') . ': ' . $credit_date ?></li>
-                <li><?php echo lang('invoice_group') . ': ' . $credit_invoice_group ?></li>
+                <li><?php echo trans('client') . ': ' . $invoice->client_name ?></li>
+                <li><?php echo trans('credit_invoice_date') . ': ' . $credit_date ?></li>
+                <li><?php echo trans('invoice_group') . ': ' . $credit_invoice_group ?></li>
             </ul>
 
             <div class="alert alert-danger no-margin">
-                <?php echo lang('create_credit_invoice_alert'); ?>
+                <?php echo trans('create_credit_invoice_alert'); ?>
             </div>
 
         </div>
@@ -92,10 +92,10 @@
         <div class="modal-footer">
             <div class="btn-group">
                 <button class="btn btn-danger" type="button" data-dismiss="modal">
-                    <i class="fa fa-times"></i> <?php echo lang('cancel'); ?>
+                    <i class="fa fa-times"></i> <?php echo trans('cancel'); ?>
                 </button>
                 <button class="btn btn-success" id="create-credit-confirm" type="button">
-                    <i class="fa fa-check"></i> <?php echo lang('confirm'); ?>
+                    <i class="fa fa-check"></i> <?php echo trans('confirm'); ?>
                 </button>
             </div>
         </div>

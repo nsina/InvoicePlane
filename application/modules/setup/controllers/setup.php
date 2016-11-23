@@ -30,6 +30,7 @@ class Setup extends MX_Controller
         $this->load->helper('directory');
         $this->load->helper('url');
         $this->load->helper('language');
+        $this->load->helper('trans');
 
         $this->load->model('mdl_setup');
 
@@ -60,7 +61,7 @@ class Setup extends MX_Controller
 
         $this->load->helper('directory');
 
-        $languages = directory_map(APPPATH . '/language', TRUE);
+        $languages = directory_map(APPPATH . '/language', true);
 
         sort($languages);
 
@@ -109,7 +110,7 @@ class Setup extends MX_Controller
                 redirect('setup/install_tables');
             } else {
                 // This appears to be an upgrade
-                $this->session->set_userdata('is_upgrade', TRUE);
+                $this->session->set_userdata('is_upgrade', true);
                 $this->session->set_userdata('install_step', 'upgrade_tables');
                 redirect('setup/upgrade_tables');
             }
@@ -194,7 +195,7 @@ class Setup extends MX_Controller
             $db_array = $this->mdl_users->db_array();
             $db_array['user_type'] = 1;
 
-            $this->mdl_users->save(NULL, $db_array);
+            $this->mdl_users->save(null, $db_array);
 
             $this->session->set_userdata('install_step', 'complete');
             redirect('setup/complete');
@@ -202,7 +203,7 @@ class Setup extends MX_Controller
 
         $this->layout->set(
             array(
-                'countries' => get_country_list(lang('cldr')),
+                'countries' => get_country_list(trans('cldr')),
             )
         );
         $this->layout->buffer('content', 'setup/create_user');
@@ -257,14 +258,14 @@ class Setup extends MX_Controller
         foreach ($writables as $writable) {
             if (!is_writable($writable)) {
                 $checks[] = array(
-                    'message' => $writable . ' ' . lang('is_not_writable'),
+                    'message' => $writable . ' ' . trans('is_not_writable'),
                     'success' => 0
                 );
 
                 $this->errors += 1;
             } else {
                 $checks[] = array(
-                    'message' => $writable . ' ' . lang('is_writable'),
+                    'message' => $writable . ' ' . trans('is_writable'),
                     'success' => 1
                 );
             }
@@ -293,7 +294,7 @@ class Setup extends MX_Controller
             $this->errors += 1;
 
             return array(
-                'message' => lang('cannot_connect_database_server'),
+                'message' => trans('cannot_connect_database_server'),
                 'success' => 0
             );
         }
@@ -304,13 +305,13 @@ class Setup extends MX_Controller
             $this->errors += 1;
 
             return array(
-                'message' => lang('cannot_select_specified_database'),
+                'message' => trans('cannot_select_specified_database'),
                 'success' => 0
             );
         }
 
         return array(
-            'message' => lang('database_properly_configured'),
+            'message' => trans('database_properly_configured'),
             'success' => 1
         );
     }
@@ -319,19 +320,19 @@ class Setup extends MX_Controller
     {
         $checks = array();
 
-        $php_required = '5.3';
+        $php_required = '5.4';
         $php_installed = PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION;
 
         if ($php_installed < $php_required) {
             $this->errors += 1;
 
             $checks[] = array(
-                'message' => sprintf(lang('php_version_fail'), $php_installed, $php_required),
+                'message' => sprintf(trans('php_version_fail'), $php_installed, $php_required),
                 'success' => 0
             );
         } else {
             $checks[] = array(
-                'message' => lang('php_version_success'),
+                'message' => trans('php_version_success'),
                 'success' => 1
             );
         }
@@ -340,12 +341,12 @@ class Setup extends MX_Controller
             #$this->errors += 1;
 
             $checks[] = array(
-                'message' => sprintf(lang('php_timezone_fail'), date_default_timezone_get()),
+                'message' => sprintf(trans('php_timezone_fail'), date_default_timezone_get()),
                 'warning' => 1
             );
         } else {
             $checks[] = array(
-                'message' => lang('php_timezone_success'),
+                'message' => trans('php_timezone_success'),
                 'success' => 1
             );
         }
